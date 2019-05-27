@@ -4,10 +4,20 @@ import util.Pipeline;
 
 import java.util.Arrays;
 
-public class ConcurrentFloatMask implements ConcurrentMask {
+public strictfp class ConcurrentFloatMask implements ConcurrentMask {
 
 	private FloatMask floatMask;
 	private String name = "new float mask";
+
+	public float hashcode() {
+		int sum = 0;
+		for(int x = 0;x < floatMask.getSize();x++) {
+			for(int y = 0;y < floatMask.getSize();y++) {
+				sum += floatMask.get(x, y);
+			}
+		}
+		return sum;
+	}
 
 	public ConcurrentFloatMask(int size, long seed, String name) {
 		this.floatMask = new FloatMask(size, seed);

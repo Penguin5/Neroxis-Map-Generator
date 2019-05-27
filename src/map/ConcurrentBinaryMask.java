@@ -4,10 +4,20 @@ import util.Pipeline;
 
 import java.util.Arrays;
 
-public class ConcurrentBinaryMask implements ConcurrentMask {
+public strictfp class ConcurrentBinaryMask implements ConcurrentMask {
 
 	private BinaryMask binaryMask;
 	private String name = "new binary mask";
+
+	public float hashcode() {
+		float sum = 0;
+		for(int x = 0;x < binaryMask.getSize();x++) {
+			for(int y = 0;y < binaryMask.getSize();y++) {
+				sum += binaryMask.get(x, y) ? 1f : 0f;
+			}
+		}
+		return sum;
+	}
 
 	public ConcurrentBinaryMask(int size, long seed, String name) {
 		this.binaryMask = new BinaryMask(size, seed);

@@ -40,7 +40,7 @@ public class Pipeline {
                 })
                 .thenApplyAsync(function)
                 .thenRun(() -> {
-                    System.out.printf("Done: %s(%d)\n", executingMask.getName(), index);
+                    System.out.printf("Done: %s(%d)\t%f\n", executingMask.getName(), index, executingMask.hashcode());
                 });
         Entry entry = new Entry(index, executingMask, dependencies, newFuture);
 
