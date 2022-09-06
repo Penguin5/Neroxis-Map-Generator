@@ -375,6 +375,7 @@ public strictfp class MapPopulator {
             rock.setSize(mapImageSize);
             accentRock.setSize(mapImageSize);
             smallWater.setSize(mapImageSize);
+            water.setSize(mapImageSize);
             accentGroundTexture.init(accentGround, 0, 1).smooth(8).add(accentGround, .65f).smooth(4).add(accentGround, .5f).smooth(1).max(1f);
             accentPlateauTexture.init(accentPlateau, 0, 1).smooth(8).add(accentPlateau, .65f).smooth(4).add(accentPlateau, .5f).smooth(1).max(1f);
             slopesTexture.init(slopes, 0, 1).smooth(8).add(slopes, .65f).smooth(4).add(slopes, .5f).smooth(1).max(1f);
@@ -384,7 +385,7 @@ public strictfp class MapPopulator {
             waterBeachTexture.subtract(aboveBeachEdge, .9f).min(0).smooth(2, rock.copy().invert()).subtract(rock, 1f).subtract(aboveBeachEdge, .8f).min(0).add(waterBeach, .65f).smooth(2, rock.copy().invert());
             waterBeachTexture.subtract(rock, 1f).subtract(aboveBeachEdge, 0.7f).min(0).add(waterBeach, .5f).smooth(2, rock.copy().invert()).smooth(2, rock.copy().invert()).subtract(rock, 1f).min(0).smooth(2, rock.copy().invert());
             waterBeachTexture.smooth(2, rock.copy().invert()).subtract(rock, 1f).min(0).smooth(2, rock.copy().invert()).smooth(1, rock.copy().invert()).smooth(1, rock.copy().invert()).max(1f);
-            waterBeachTexture.removeAreasOfSpecifiedSizeWithLocalMaximums(0, smallWaterSizeLimit, 15, 1f).smooth(1).smooth(1).reduceValuesOnIntersectingSmoothingZones(rock, 1f);
+            waterBeachTexture.removeAreasOfSpecifiedSizeWithLocalMaximums(0, smallWaterSizeLimit, 15, 1f).reduceValuesOnIntersectingSmoothingZones(rock, 1f).add(water, 1f).subtract(smallWater, 1f).smooth(1).smooth(1);
             if (smallWaterTexturesOnLayer5) {
                 steepHillsTexture.add(smallWaterBeachTexture).max(1f);
             } else {
